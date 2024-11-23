@@ -5,11 +5,13 @@ defmodule AdventCLI do
   end
 
   def main(args) do
-    {opts, [day], _} =
+    {opts, days, _} =
       OptionParser.parse(args, switches: [test: :boolean, file: :string])
 
-    if day do
-      run_day(day, opts)
+    run_day_partial = fn day -> run_day(day, opts) end
+
+    if Enum.any?(days) do
+      Enum.each(days, run_day_partial)
     else
       IO.puts("Please specify a day number")
     end
@@ -20,14 +22,10 @@ defmodule AdventCLI do
     test_flag = opts[:test]
 
     input_file =
-      if opts[:file] do
-        opts[:file]
-      else
-        if test_flag do
-          "input_test/day#{day}.txt"
-        else
-          "input/day#{day}.txt"
-        end
+      cond do
+        opts[:file] -> opts[:file]
+        test_flag -> "input_test/day#{day}.txt"
+        true -> "input/day#{day}.txt"
       end
 
     case File.read(input_file) do

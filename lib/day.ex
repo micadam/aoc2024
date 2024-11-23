@@ -4,9 +4,18 @@ defmodule AdventOfCode.Day do
 
   @spec solve(module :: module(), input :: String.t()) :: :ok
   def solve(module, input) do
-    input = input |> String.trim() |> String.split("\n")
-    run_part(module, :part1, input)
-    run_part(module, :part2, input)
+    IO.puts(
+      "#{IO.ANSI.green()}🎄Day #{module |> Module.split() |> List.last() |> String.slice(-2..-1)}🎄#{IO.ANSI.reset()}"
+    )
+
+    if input == "" do
+      IO.puts("#{IO.ANSI.red()}No input provided!#{IO.ANSI.reset()}")
+    else
+      input = input |> String.trim() |> String.split("\n")
+      run_part(module, :part1, input)
+      run_part(module, :part2, input)
+    end
+
     :ok
   end
 
