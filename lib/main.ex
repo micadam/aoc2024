@@ -6,9 +6,10 @@ defmodule AdventCLI do
 
   def main(args) do
     {opts, days, _} =
-      OptionParser.parse(args, switches: [test: :boolean, file: :string])
+      OptionParser.parse(args, switches: [test: :boolean, file: :string, pack: :string])
 
-    run_day_partial = fn day -> run_day(day, opts) end
+    pack = opts[:pack] || "AdventOfCode2024"
+    run_day_partial = fn day -> run_day(day, pack, opts) end
 
     if Enum.any?(days) do
       Enum.each(days, run_day_partial)
@@ -17,27 +18,13 @@ defmodule AdventCLI do
     end
   end
 
-  defp run_day(day, opts) do
+  defp run_day(day, pack, opts) do
     day = String.pad_leading(day, 2, "0")
     test_flag = opts[:test]
+    day_module = "Elixir.#{pack |> String.slice(0..-5//1)
+    }.Day" |> String.to_atom()
 
-    input_file =
-      cond do
-        opts[:file] -> opts[:file]
-        test_flag -> "input_test/day#{day}.txt"
-        true -> "input/day#{day}.txt"
-      end
-
-    case File.read(input_file) do
-      {:ok, input} ->
-        module = String.to_atom("Elixir.AdventOfCode.Day#{day}")
-        AdventOfCode.Day.solve(module, input)
-
-      {:error, reason} ->
-        case reason do
-          :enoent -> IO.puts("Input file not found: #{input_file}")
-          _ -> IO.puts("Error reading input file #{input_file}: #{reason}")
-        end
-    end
+    module = String.to_atom("Elixir.#{pack}.Day#{day}")
+    apply(day_module, :solve, [module, test_flag])
   end
 end

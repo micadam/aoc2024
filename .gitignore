@@ -10,6 +10,5 @@ erl_crash.dump
 .elixir_ls/
 
 
-/input
-/input_test
+/inputs
 /advent_of_code
