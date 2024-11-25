@@ -19,6 +19,8 @@ defmodule AdventOfCode.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:prioqueue, "~> 0.2.0"},
+    ]
   end
 end
