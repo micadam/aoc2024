@@ -5,7 +5,7 @@ defmodule AdventOfCode2024.Day01 do
     input
     |> String.split("\n", trim: true)
     |> Enum.map(fn pair ->
-      String.split(pair, "   ", trim: true)
+      String.split(pair)
       |> Enum.map(&String.to_integer/1)
     end)
     |> Enum.zip()
@@ -29,7 +29,7 @@ defmodule AdventOfCode2024.Day01 do
     |> then(fn [left, right] ->
       [
         left,
-        Enum.reduce(right, %{}, fn x, acc -> Map.update(acc, x, 1, &(&1 + 1)) end)
+        Enum.frequencies(right)
       ]
     end)
     |> then(fn [left, map] -> Enum.map(left, fn x -> x * Map.get(map, x, 0) end) end)
