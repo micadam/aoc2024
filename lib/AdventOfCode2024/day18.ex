@@ -3,15 +3,11 @@ defmodule AdventOfCode2024.Day18 do
 
   @impl AdventOfCode.Day
   def part1(input) do
-    input
-    |> Enum.map(&String.to_integer/1)
-    |> Enum.reduce(&Kernel.+/2)
+    "not implemented"
   end
 
   @impl AdventOfCode.Day
   def part2(input) do
-    input
-    |> Enum.map(&String.to_integer/1)
-    |> Enum.reduce(&Kernel.*/2)
+    "not implemented"
   end
 end
