@@ -11,7 +11,6 @@ defmodule AdventOfCode2024.Day03 do
   @impl AdventOfCode.Day
   def part2(input) do
     Regex.scan(~r/(do|don't|mul)\((?:([0-9]+),([0-9]+))?\)/, input)
-    |> IO.inspect()
     |> Enum.reduce({0, :do}, fn
       [_, "mul", a, b], {acc, :do} -> {acc + String.to_integer(a) * String.to_integer(b), :do}
       [_, "mul" | _], {acc, :dont} -> {acc, :dont}
