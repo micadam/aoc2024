@@ -41,9 +41,10 @@ defmodule GenericDay do
 end
 
 defmodule AdventOfCode.Day do
-  @callback part1([String.t()]) :: any()
-  @callback part2([String.t()]) :: any()
+  @callback part1(String.t()) :: any()
+  @callback part2(String.t()) :: any()
 
+  @spec solve(atom(), boolean()) :: :ok
   def solve(module, test) do
     parts = [:part1, :part2]
     GenericDay.solve(module, parts, test, false)
@@ -55,9 +56,9 @@ defmodule AdventOfCode.Day do
 end
 
 defmodule EverybodyCodes.Day do
-  @callback part1([String.t()]) :: any()
-  @callback part2([String.t()]) :: any()
-  @callback part3([String.t()]) :: any()
+  @callback part1(String.t()) :: any()
+  @callback part2(String.t()) :: any()
+  @callback part3(String.t()) :: any()
 
   def solve(module, test) do
     parts = [:part1, :part2, :part3]
