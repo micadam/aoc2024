@@ -8,7 +8,8 @@ defmodule AdventOfCode.MixProject do
       elixir: "~> 1.17.3",
       start_permanent: Mix.env() == :prod,
       escript: [main_module: AdventCLI],
-      deps: deps()
+      deps: deps(),
+      test_paths: ["lib"]
     ]
   end
 
