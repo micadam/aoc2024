@@ -12,8 +12,7 @@ defmodule AdventOfCode2024.Day08 do
       |> Grid.all_cells()
       |> Enum.map(fn pos -> {pos, Grid.get(grid, pos)} end)
       |> Enum.filter(fn {_, cell} -> cell != "." end)
-      |> Enum.group_by(fn {_, cell} -> cell end)
-      |> Enum.map(fn {_, l} -> Enum.map(l, fn {pos, _} -> pos end) end)
+      |> Enum.group_by(fn {_, cell} -> cell end, fn {pos, _} -> pos end)
 
     {grid, positions}
   end
@@ -23,7 +22,7 @@ defmodule AdventOfCode2024.Day08 do
     {grid, positions} = preprocess(input)
 
     positions
-    |> Enum.map(fn coordd_set ->
+    |> Enum.map(fn {_, coordd_set} ->
       coordd_set
       |> Iter.pairs()
       |> Enum.map(fn {{x1, y1}, {x2, y2}} ->
@@ -45,7 +44,7 @@ defmodule AdventOfCode2024.Day08 do
     {grid, positions} = preprocess(input)
 
     positions
-    |> Enum.map(fn coordd_set ->
+    |> Enum.map(fn {_, coordd_set} ->
       coordd_set
       |> Iter.pairs()
       |> Enum.map(fn {a = {x1, y1}, b = {x2, y2}} ->
