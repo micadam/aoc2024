@@ -18,14 +18,18 @@ defmodule AdventOfCode2024.Day07 do
   end
 
   def possible(target, acc, rest, concatenate \\ false) do
-    case rest do
-      [] ->
-        acc == target
+    if acc > target do
+      false
+    else
+      case rest do
+        [] ->
+          acc == target
 
-      [h | t] ->
-        possible(target, acc + h, t, concatenate) or
-          possible(target, acc * h, t, concatenate) or
-          (concatenate and possible(target, concatenate_integers(acc, h), t, concatenate))
+        [h | t] ->
+          possible(target, acc + h, t, concatenate) or
+            possible(target, acc * h, t, concatenate) or
+            (concatenate and possible(target, concatenate_integers(acc, h), t, concatenate))
+      end
     end
   end
 
