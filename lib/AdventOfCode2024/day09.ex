@@ -125,9 +125,6 @@ defmodule AdventOfCode2024.Day09 do
         end
       end)
 
-    # IO.inspect(blanks)
-    # IO.inspect(blocks)
-
     blanks =
       :array.to_list(blanks)
       |> Enum.map(fn {size, blocks, idx} ->
