@@ -22,6 +22,7 @@ defmodule AdventOfCode.MixProject do
   defp deps do
     [
       {:prioqueue, "~> 0.2.0"},
+      {:memoize, "~> 1.4"},
     ]
   end
 end

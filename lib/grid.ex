@@ -6,6 +6,17 @@ defmodule Grid do
     |> :array.from_list()
   end
 
+  def strings_to_integer_grid(texts) do
+    texts
+    |> Enum.map(fn row ->
+      row
+      |> String.graphemes()
+      |> Enum.map(&String.to_integer/1)
+      |> :array.from_list()
+    end)
+    |> :array.from_list()
+  end
+
   def is_valid_position(grid, {row, col}) do
     rows = :array.size(grid)
     cols = :array.size(:array.get(0, grid))
@@ -34,5 +45,16 @@ defmodule Grid do
     cols = num_cols(grid)
 
     for row <- 0..(rows - 1), col <- 0..(cols - 1), do: {row, col}
+  end
+
+  def get_neighbours(grid, {row, col}) do
+    rows = num_rows(grid)
+    cols = num_cols(grid)
+
+    [{0, 1}, {1, 0}, {0, -1}, {-1, 0}]
+    |> Enum.map(fn {drow, dcol} -> {row + drow, col + dcol} end)
+    |> Enum.filter(fn {nrow, ncol} ->
+      nrow >= 0 and nrow < rows and ncol >= 0 and ncol < cols
+    end)
   end
 end
