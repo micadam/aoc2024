@@ -3,7 +3,7 @@ defmodule AdventOfCode2024.Day10 do
 
   use Memoize
 
-  defmemo get_score(grid, start, part2) do
+  def get_score(grid, start, part2) do
     h = Grid.get(grid, start)
 
     if h == 9 do
