@@ -42,9 +42,6 @@ defmodule AdventOfCode2024.Day14 do
     xx = 101
     yy = 103
 
-    mid_x = div(xx, 2)
-    mid_y = div(yy, 2)
-
     robots =
       input
       |> String.split("\n", trim: true)
