@@ -120,8 +120,8 @@ defmodule AdventOfCode2024.Day16 do
           {:empty, _} ->
             {:done, visited}
 
-          {{:value, v = {pos, dir}}, q} ->
-            {Enum.reduce(Map.get(prev, {pos, dir}, MapSet.new()), q, fn v = {pos, _}, q ->
+          {{:value, {pos, dir}}, q} ->
+            {Enum.reduce(Map.get(prev, {pos, dir}, MapSet.new()), q, fn v, q ->
                :queue.in(v, q)
              end), MapSet.put(visited, pos)}
         end
