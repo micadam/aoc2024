@@ -12,12 +12,13 @@ defmodule AdventOfCode2024.Day19 do
     {pieces, towels}
   end
 
-  defmemo possible("", _), do: 1
+  defmemo(possible("", _), do: 1)
+
   defmemo possible(towel, pieces) do
     pieces
-      |> Enum.filter(fn piece -> String.starts_with?(towel, piece) end)
-      |> Enum.map(fn piece -> possible(String.slice(towel, String.length(piece)..-1//1), pieces) end)
-      |> Enum.sum()
+    |> Enum.filter(fn piece -> String.starts_with?(towel, piece) end)
+    |> Enum.map(fn piece -> possible(String.slice(towel, String.length(piece)..-1//1), pieces) end)
+    |> Enum.sum()
   end
 
   @impl AdventOfCode.Day
@@ -28,7 +29,7 @@ defmodule AdventOfCode2024.Day19 do
     |> Enum.map(fn towel ->
       possible(towel, pieces)
     end)
-    |> Enum.count(& &1 > 0)
+    |> Enum.count(&(&1 > 0))
   end
 
   @impl AdventOfCode.Day

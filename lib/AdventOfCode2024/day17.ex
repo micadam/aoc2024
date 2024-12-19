@@ -17,9 +17,6 @@ defmodule AdventOfCode2024.Day17 do
     div(numerator, floor(:math.pow(2, exponent)))
   end
 
-  def step(ptr, abc, ops) do
-  end
-
   def run_program(a, b, c, ops) do
     Stream.iterate({:cont, {0, {a, b, c}, []}}, fn
       {:cont, {ptr, _, outs}} when ptr >= length(ops) ->
