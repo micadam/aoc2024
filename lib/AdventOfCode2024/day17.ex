@@ -156,7 +156,6 @@ defmodule AdventOfCode2024.Day17 do
         end)
       end)
     end)
-    |> IO.inspect()
     |> Enum.map(fn i -> String.to_integer(i, 2) end)
     |> Enum.min()
   end
