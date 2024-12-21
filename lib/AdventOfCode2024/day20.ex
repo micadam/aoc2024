@@ -24,7 +24,7 @@ defmodule AdventOfCode2024.Day20 do
 
             {q, costs} =
               moves
-              |> Enum.reduce({q, costs}, fn dir = {drow, dcol}, {q, costs} ->
+              |> Enum.reduce({q, costs}, fn {drow, dcol}, {q, costs} ->
                 npos = {row + drow, col + dcol}
                 dcost = 1
 
